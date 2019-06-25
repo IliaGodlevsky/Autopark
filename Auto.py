@@ -108,6 +108,7 @@ class Car:
             self._board_computer.tanked_up()
 
     def __service(self):
+        # TODO: add service cost and STOP/GO conditions
         if self.__mileage % self.__mileage_till_recovery == 0:
            return True
 
@@ -146,7 +147,6 @@ class DieselCar(Car):
         return self._car_cost < other._car_cost
 
 
-
 class PetrolCar(Car):
     def __init__(self, tank_capacity,
                  car_cost,
@@ -163,8 +163,6 @@ class PetrolCar(Car):
 
     def __lt__(self, other):
         return not self > other
-
-
 
 
 class Factory:
