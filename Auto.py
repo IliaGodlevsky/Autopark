@@ -120,6 +120,13 @@ class Car:
     def __lt__(self, other):
         pass
 
+    def __add__(self, other):
+        return Car(0, self._car_cost + other._car_cost, 0, 0, 0, 0, 0)
+
+    def __iadd__(self, other):
+        self._car_cost += other._car_cost
+        return self
+
 
 class DieselCar(Car):
     def __init__(self, tank_capacity,
@@ -139,6 +146,7 @@ class DieselCar(Car):
         return self._car_cost < other._car_cost
 
 
+
 class PetrolCar(Car):
     def __init__(self, tank_capacity,
                  car_cost,
@@ -155,6 +163,8 @@ class PetrolCar(Car):
 
     def __lt__(self, other):
         return not self > other
+
+
 
 
 class Factory:
@@ -212,15 +222,27 @@ def drive(cars, bottom, upper):
     return cars
 
 
+def count_car_total_price(cars):
+    total_price = Car(0, 0, 0, 0, 0, 0, 0)
+    for car in cars:
+        total_price += car
+    return total_price
+
+
+CAR_PRODUCTION = 100
 MIN_DISTANCE = 55000
 MAX_DISTANCE = 286000
-factory = Factory(100)
+factory = Factory(CAR_PRODUCTION)
 my_cars = factory.produce()
 my_cars = drive(my_cars, MIN_DISTANCE, MAX_DISTANCE)
 petrol = extract(my_cars, PetrolCar)
 diesel = extract(my_cars, DieselCar)
 petrol.sort()
 diesel.sort()
+summary = count_car_total_price(my_cars)
+print(summary._car_cost)
+
+
 
 
 
