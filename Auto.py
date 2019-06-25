@@ -240,10 +240,8 @@ petrol.sort()
 diesel.sort()
 summary = count_car_total_price(my_cars)
 print(summary._car_cost)
-for car in petrol:
-    car.report()
-for car in diesel:
-    car.report()
+for car in petrol: car.report()
+for car in diesel: car.report()
 
 
 
