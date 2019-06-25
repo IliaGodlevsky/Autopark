@@ -155,7 +155,7 @@ class PetrolCar(Car):
 
 
 class Factory:
-    def __init__(self, number_of_cars = 0):
+    def __init__(self, number_of_cars=0):
         self.__number_of_cars = number_of_cars
 
     def new_plan(self, number_of_cars):
@@ -184,7 +184,7 @@ class Factory:
     def produce(self):
         auto_park = []
         for cycle in range(0, self.__number_of_cars):
-            if cycle % 3 == cycle % 5:
+            if cycle % 3 == cycle % 5 and cycle != 0:
                 auto_park.append(self.__produce_diesel_car_better_tank())
             elif cycle % 3 == 0:
                 auto_park.append(self.__produce_diesel_car_normal_tank())
@@ -194,6 +194,21 @@ class Factory:
                 auto_park.append(self.__produce_petrol_car_normal_tank())
         return auto_park
 
+
+def extract(cars, type_of_car):
+    park = []
+    for car in cars:
+        if isinstance(car, type_of_car):
+            park.append(car)
+    return park
+
+
+factory = Factory(100)
+my_cars = factory.produce()
+petrol = extract(my_cars, PetrolCar)
+diesel = extract(my_cars, DieselCar)
+print(len(petrol))
+print(len(diesel))
 
 
 
