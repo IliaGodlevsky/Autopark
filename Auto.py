@@ -29,7 +29,7 @@ class Report:
         self.__mileage = mileage
 
     def set_mileage_to_recovery(self, mileage_till_recovery):
-        self.__mileage_to_recovery = self.__mileage % mileage_till_recovery
+        self.__mileage_to_recovery = mileage_till_recovery - self.__mileage % mileage_till_recovery
 
     def set_remaining_cost(self, cost_remain):
         self.__cost_remain = cost_remain
@@ -117,7 +117,7 @@ car = Car(NORMAL_TANK, CAR_COST,
           PETROL_SERVICE_COST,
           PETROL_MILEAGE_TILL_RECOVERY)
 
-car.drive(288000)
+car.drive(250000)
 car.report()
 
 
