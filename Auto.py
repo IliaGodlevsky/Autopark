@@ -56,13 +56,13 @@ class Report:
 
 class Car:
     def __init__(self,
-                 tank_capacity,
-                 car_cost,
-                 cost_losing,
-                 fuel_cost,
-                 fuel_consumption,
-                 service_cost,
-                 mileage_till_recovery):
+                 tank_capacity=0,
+                 car_cost=0,
+                 cost_losing=0.0,
+                 fuel_cost=0.0,
+                 fuel_consumption=0,
+                 service_cost=0,
+                 mileage_till_recovery=0):
         self.__tank_capacity = tank_capacity
         self.__current_tank_capacity = tank_capacity
         self._car_cost = car_cost
@@ -223,7 +223,7 @@ def drive(cars, bottom, upper):
 
 
 def count_car_total_price(cars):
-    total_price = Car(0, 0, 0, 0, 0, 0, 0)
+    total_price = Car()
     for car in cars:
         total_price += car
     return total_price
