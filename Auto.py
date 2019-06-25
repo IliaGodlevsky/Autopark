@@ -154,4 +154,46 @@ class PetrolCar(Car):
         return not self > other
 
 
+class Factory:
+    def __init__(self, number_of_cars = 0):
+        self.__number_of_cars = number_of_cars
+
+    def new_plan(self, number_of_cars):
+        self.__number_of_cars = number_of_cars
+
+    def __produce_petrol_car_normal_tank(self):
+        car1 = PetrolCar(NORMAL_TANK, CAR_COST, PETROL_CAR_COST_LOSING, PETROL_COST, PETROL_FUEL_CONSUMPTION,
+                        PETROL_SERVICE_COST, PETROL_MILEAGE_TILL_RECOVERY)
+        return car1
+
+    def __produce_petrol_car_better_tank(self):
+        car2 = PetrolCar(BETTER_TANK, CAR_COST, PETROL_CAR_COST_LOSING, PETROL_COST, PETROL_FUEL_CONSUMPTION,
+                        PETROL_SERVICE_COST, PETROL_MILEAGE_TILL_RECOVERY)
+        return car2
+
+    def __produce_diesel_car_normal_tank(self):
+        car3 = DieselCar(NORMAL_TANK, CAR_COST, DIESEL_CAR_COST_LOSING, DIESEL_COST, DIESEL_FUEL_CONSUMPTION,
+                        DIESEL_SERVICE_COST, DIESEL_MILEAGE_TILL_RECOVERY)
+        return car3
+
+    def __produce_diesel_car_better_tank(self):
+        car4 = DieselCar(BETTER_TANK, CAR_COST, DIESEL_CAR_COST_LOSING, DIESEL_COST, DIESEL_FUEL_CONSUMPTION,
+                        DIESEL_SERVICE_COST, DIESEL_MILEAGE_TILL_RECOVERY)
+        return car4
+
+    def produce(self):
+        auto_park = []
+        for cycle in range(0, self.__number_of_cars):
+            if cycle % 3 == cycle % 5:
+                auto_park.append(self.__produce_diesel_car_better_tank())
+            elif cycle % 3 == 0:
+                auto_park.append(self.__produce_diesel_car_normal_tank())
+            elif cycle % 5 == 0:
+                auto_park.append(self.__produce_petrol_car_better_tank())
+            else:
+                auto_park.append(self.__produce_petrol_car_normal_tank())
+        return auto_park
+
+
+
 
