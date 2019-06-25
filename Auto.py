@@ -184,7 +184,7 @@ class Factory:
     def produce(self):
         auto_park = []
         for cycle in range(0, self.__number_of_cars):
-            if cycle % 3 == cycle % 5 and cycle != 0:
+            if cycle % 3 == 0 and cycle % 5 == 0:
                 auto_park.append(self.__produce_diesel_car_better_tank())
             elif cycle % 3 == 0:
                 auto_park.append(self.__produce_diesel_car_normal_tank())
