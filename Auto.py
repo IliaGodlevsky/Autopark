@@ -18,7 +18,34 @@ GO = True
 
 
 class Report:
-    pass
+    def __init__(self):
+        self.__mileage = 0
+        self.__cost_remain = 0
+        self.__total_fuel_cost = 0
+        self.__times_of_tanking_up = 0
+        self.__mileage_to_recovery = 0
+
+    def set_mileage(self, mileage):
+        self.__mileage = mileage
+
+    def set_mileage_to_recovery(self, mileage_till_recovery):
+        self.__mileage_to_recovery = self.__mileage % mileage_till_recovery
+
+    def set_remaining_cost(self, cost_remain):
+        self.__cost_remain = cost_remain
+
+    def count_fuel_cost(self, fuel_cost):
+        self.__total_fuel_cost += fuel_cost
+
+    def tanked_up(self):
+        self.__times_of_tanking_up += 1
+
+    def report(self):
+        print("Total mileage: ", self.__mileage)
+        print("Cost remained: ", self.__cost_remain)
+        print("Fuel expends: ", self.__total_fuel_cost)
+        print("Tanked up, times: ", self.__times_of_tanking_up)
+        print("Mileage to next recovery: ", self.__mileage_to_recovery)
 
 
 class Car:
@@ -45,13 +72,16 @@ class Car:
 
     def drive(self, distance):
         if self.__status == GO:
-            for it in range(0, distance):
+            while self.__mileage < distance:
                 self.__mileage += 1
                 self.__fuel_consume()
                 self.__tank_up()
                 self.__increase_fuel_consumption()
                 self.__reduce_cost()
                 self.__service()
+        self.__board_computer.set_mileage(self.__mileage)
+        self.__board_computer.set_remaining_cost(self.__car_cost)
+        self.__board_computer.set_mileage_to_recovery(self.__mileage_till_recovery)
 
     def __fuel_consume(self):
         self.__current_tank_capacity -= self.__fuel_consumption/100.0
@@ -70,15 +100,15 @@ class Car:
     def __tank_up(self):
         if self.__out_of_fuel():
             self.__current_tank_capacity = self.__tank_capacity
+            self.__board_computer.count_fuel_cost(self.__tank_capacity * self.__fuel_cost)
+            self.__board_computer.tanked_up()
 
     def __service(self):
         if self.__mileage % self.__mileage_till_recovery == 0:
             self.__status = STOP
 
     def report(self):
-        print("Mileage: ", self.__mileage)
-        print("Fuel consume: ", self.__fuel_consumption)
-        print("Car cost: ", self.__car_cost)
+        self.__board_computer.report()
 
 
 car = Car(NORMAL_TANK, CAR_COST,
