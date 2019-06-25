@@ -1,3 +1,6 @@
+import random
+
+
 PETROL_COST = 2.4
 DIESEL_COST = 1.8
 NORMAL_TANK = 60
@@ -203,12 +206,22 @@ def extract(cars, type_of_car):
     return park
 
 
+def drive(cars, bottom, upper):
+    for car in cars:
+        car.drive(random.randrange(bottom, upper))
+    return cars
+
+
+MIN_DISTANCE = 55000
+MAX_DISTANCE = 286000
 factory = Factory(100)
 my_cars = factory.produce()
+my_cars = drive(my_cars, MIN_DISTANCE, MAX_DISTANCE)
 petrol = extract(my_cars, PetrolCar)
 diesel = extract(my_cars, DieselCar)
-print(len(petrol))
-print(len(diesel))
+petrol.sort()
+diesel.sort()
+
 
 
 
