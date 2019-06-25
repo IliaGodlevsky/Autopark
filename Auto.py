@@ -76,8 +76,9 @@ class Car:
         self._board_computer = Report()
 
     def drive(self, distance):
+        # TODO: create formula to count all attributes in one line
         while self.__mileage < distance:
-            self.__mileage += 1
+            self.__mileage += 100
             self.__fuel_consume()
             self.__tank_up()
             self.__increase_fuel_consumption()
@@ -88,7 +89,7 @@ class Car:
         self._board_computer.set_mileage_to_recovery(self.__mileage_till_recovery)
 
     def __fuel_consume(self):
-        self.__current_tank_capacity -= self.__fuel_consumption/100.0
+        self.__current_tank_capacity -= self.__fuel_consumption
 
     def __increase_fuel_consumption(self):
         if self.__mileage % MILEAGE_TILL_GET_OLDER == 0:
@@ -239,6 +240,10 @@ petrol.sort()
 diesel.sort()
 summary = count_car_total_price(my_cars)
 print(summary._car_cost)
+for car in petrol:
+    car.report()
+for car in diesel:
+    car.report()
 
 
 
