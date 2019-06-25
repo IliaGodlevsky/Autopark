@@ -13,9 +13,9 @@ PETROL_CAR_COST_LOSING = 9.5
 DIESEL_CAR_COST_LOSING = 10.5
 FUEL_CONSUMPTION_INCREASE = 1.0
 MILEAGE_TILL_GET_OLDER = 1000
-
 STOP = False
 GO = True
+
 
 class Report:
     pass
@@ -69,13 +69,25 @@ class Car:
 
     def __tank_up(self):
         if self.__out_of_fuel():
-            self.__current_tank_capacity=self.__tank_capacity
+            self.__current_tank_capacity = self.__tank_capacity
 
     def __service(self):
         if self.__mileage % self.__mileage_till_recovery == 0:
             self.__status = STOP
 
+    def report(self):
+        print("Mileage: ", self.__mileage)
+        print("Fuel consume: ", self.__fuel_consumption)
+        print("Car cost: ", self.__car_cost)
 
 
+car = Car(NORMAL_TANK, CAR_COST,
+          PETROL_CAR_COST_LOSING,
+          PETROL_COST, PETROL_FUEL_CONSUMPTION,
+          PETROL_SERVICE_COST,
+          PETROL_MILEAGE_TILL_RECOVERY)
+
+car.drive(288000)
+car.report()
 
 
