@@ -111,13 +111,4 @@ class Car:
         self.__board_computer.report()
 
 
-car = Car(NORMAL_TANK, CAR_COST,
-          PETROL_CAR_COST_LOSING,
-          PETROL_COST, PETROL_FUEL_CONSUMPTION,
-          PETROL_SERVICE_COST,
-          PETROL_MILEAGE_TILL_RECOVERY)
-
-car.drive(250000)
-car.report()
-
 
