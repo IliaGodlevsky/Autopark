@@ -35,9 +35,17 @@ diesel = extract(my_cars, DieselCar.DieselCar)
 petrol.sort()
 diesel.sort()
 summary = count_car_total_price(my_cars)
-print(summary._car_cost)
-for car in petrol: car.report()
-for car in diesel: car.report()
+print("Total car cost: ", summary._car_cost)
+print("Petrol cars list")
+print("--------------------------------------")
+for car in petrol:
+    print("######################################")
+    car.report()
+print("Diesel cars list")
+print("--------------------------------------")
+for car in diesel:
+    print("######################################")
+    car.report()
 
 
 

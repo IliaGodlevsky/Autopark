@@ -65,9 +65,8 @@ class Car:
             self._board_computer.tanked_up()
 
     def __service(self):
-        # TODO: add service cost and STOP/GO conditions
         if self.__mileage % self.__mileage_till_recovery == 0:
-           return True
+            self._board_computer.count_recovery_expends(self.__service_cost)
 
     def report(self):
         self._board_computer.report()
