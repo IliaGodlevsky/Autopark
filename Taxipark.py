@@ -5,6 +5,7 @@ import Car
 from random import randrange
 
 
+# container class of cars
 class TaxiPark:
     def __init__(self, auto_park):
         self.__total_price = Car.Car()
@@ -48,4 +49,6 @@ class TaxiPark:
         self.__total_price = Car.Car()
         for car in self.__auto_park:
             self.__total_price += car
-        return self.__total_price
+        return self.__total_price._car_cost
+
+
