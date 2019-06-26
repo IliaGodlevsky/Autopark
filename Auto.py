@@ -27,6 +27,12 @@ def count_car_total_price(cars):
     return total_price
 
 
+def show_report(cars):
+    for car in cars:
+        print("######################################")
+        car.report()
+
+
 factory = F.Factory(C.CAR_PRODUCTION)
 my_cars = factory.produce()
 my_cars = drive(my_cars, C.MIN_DISTANCE, C.MAX_DISTANCE)
@@ -36,16 +42,12 @@ petrol.sort()
 diesel.sort()
 summary = count_car_total_price(my_cars)
 print("Total cars cost: ", summary._car_cost)
-print("Petrol cars list")
-print("--------------------------------------")
-for car in petrol:
-    print("######################################")
-    car.report()
-print("Diesel cars list")
-print("--------------------------------------")
-for car in diesel:
-    print("######################################")
-    car.report()
+print("Petrol cars list", "--------------------------------------")
+show_report(petrol)
+print("Diesel cars list", "--------------------------------------")
+show_report(diesel)
+
+
 
 
 
