@@ -24,17 +24,25 @@ class Car:
         self._board_computer = Report.Report()
 
     def drive(self, distance):
-        # TODO: create formula to count all attributes in one line
+        interval = 100
+        first_distance = distance - distance % 100
+        self.__move(first_distance, interval)
+        if distance % 100 != 0:
+            second_distance = distance + distance - first_distance
+            interval = 1
+            self.__move(second_distance, interval)
+        self._board_computer.set_mileage(self.__mileage)
+        self._board_computer.set_remaining_cost(self._car_cost)
+        self._board_computer.set_mileage_to_recovery(self.__mileage_till_recovery)
+
+    def __move(self, distance, interval):
         while self.__mileage < distance:
-            self.__mileage += 100
+            self.__mileage += interval
             self.__fuel_consume()
             self.__tank_up()
             self.__increase_fuel_consumption()
             self.__reduce_cost()
             self.__service()
-        self._board_computer.set_mileage(self.__mileage)
-        self._board_computer.set_remaining_cost(self._car_cost)
-        self._board_computer.set_mileage_to_recovery(self.__mileage_till_recovery)
 
     def __fuel_consume(self):
         self.__current_tank_capacity -= self.__fuel_consumption
