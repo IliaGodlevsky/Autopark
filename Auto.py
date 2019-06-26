@@ -1,51 +1,13 @@
-import random
-import Car
 import Factory as F
 import Constants as C
-import PetrolCar
-import DieselCar
-
-
-def extract(cars, type_of_car):
-    park = []
-    for car in cars:
-        if isinstance(car, type_of_car):
-            park.append(car)
-    return park
-
-
-def drive(cars, bottom, upper):
-    for car in cars:
-        car.drive(random.randrange(bottom, upper))
-    return cars
-
-
-def count_car_total_price(cars):
-    total_price = Car.Car()
-    for car in cars:
-        total_price += car
-    return total_price
-
-
-def show_report(cars):
-    for car in cars:
-        print("######################################")
-        car.report()
-
+import Taxipark as taxi
 
 factory = F.Factory(C.CAR_PRODUCTION)
 my_cars = factory.produce()
-my_cars = drive(my_cars, C.MIN_DISTANCE, C.MAX_DISTANCE)
-petrol = extract(my_cars, PetrolCar.PetrolCar)
-diesel = extract(my_cars, DieselCar.DieselCar)
-petrol.sort()
-diesel.sort()
-summary = count_car_total_price(my_cars)
-print("Total cars cost: ", summary._car_cost)
-print("Petrol cars list", "--------------------------------------")
-show_report(petrol)
-print("Diesel cars list", "--------------------------------------")
-show_report(diesel)
+taxi_park = taxi.TaxiPark(my_cars)
+taxi_park.send_in_way(C.MIN_DISTANCE, C.MAX_DISTANCE)
+taxi_park.sort()
+taxi_park.show_park()
 
 
 
