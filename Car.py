@@ -60,8 +60,8 @@ class Car:
 
     def __tank_up(self):
         if self.__out_of_fuel():
+            self._board_computer.count_fuel_cost((self.__tank_capacity - self.__current_tank_capacity) * self.__fuel_cost)
             self.__current_tank_capacity = self.__tank_capacity
-            self._board_computer.count_fuel_cost(self.__tank_capacity * self.__fuel_cost)
             self._board_computer.tanked_up()
 
     def __service(self):
