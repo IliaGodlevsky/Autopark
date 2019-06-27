@@ -25,12 +25,11 @@ class Car:
 
     def drive(self, distance):
         interval = 100
-        first_distance = distance - distance % 100
-        self.__move(first_distance, interval)
-        if distance % 100 != 0:
-            second_distance = distance + distance - first_distance
-            interval = 1
-            self.__move(second_distance, interval)
+        way = distance - distance % 100
+        self.__move(way, interval)
+        way = distance
+        interval = 1
+        self.__move(way, interval)
         self._board_computer.set_mileage(self.__mileage)
         self._board_computer.set_remaining_cost(self._car_cost)
         self._board_computer.set_mileage_to_recovery(self.__mileage_till_recovery)
