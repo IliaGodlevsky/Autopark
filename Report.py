@@ -8,6 +8,7 @@ class Report:
         self.__times_of_tanking_up = 0
         self.__mileage_to_recovery = 0
         self.__recovery_expends = 0
+        self.__fuel_remained = 0
 
     def set_mileage(self, mileage):
         self.__mileage = mileage
@@ -30,10 +31,14 @@ class Report:
     def mileage_to_recovery(self):
         return self.__mileage_to_recovery
 
+    def fuel_info(self, fuel_remained):
+        self.__fuel_remained = fuel_remained
+
     def report(self):
         print("Total mileage: ", self.__mileage)
         print("Cost remained: ", self.__cost_remain)
         print("Fuel expends: ", self.__total_fuel_cost)
+        print("Fuel in the tank: ", self.__fuel_remained)
         print("Tanked up, times: ", self.__times_of_tanking_up)
         print("Mileage to next recovery: ", self.__mileage_to_recovery)
         print("Recovery expends: ", self.__recovery_expends)

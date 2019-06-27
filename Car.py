@@ -34,6 +34,7 @@ class Car:
         self._board_computer.set_mileage(self.__mileage)
         self._board_computer.set_remaining_cost(self._car_cost)
         self._board_computer.set_mileage_to_recovery(self.__mileage_till_recovery)
+        self._board_computer.fuel_info(self.__current_tank_capacity)
 
     def __move(self, distance, interval):
         while self.__mileage < distance:
