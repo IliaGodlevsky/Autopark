@@ -39,14 +39,14 @@ class Car:
     def __move(self, distance, interval):
         while self.__mileage < distance:
             self.__mileage += interval
-            self.__fuel_consume()
+            self.__fuel_consume(self.__fuel_consumption/100 * interval)
             self.__tank_up()
             self.__increase_fuel_consumption()
             self.__reduce_cost()
             self.__service()
 
-    def __fuel_consume(self):
-        self.__current_tank_capacity -= self.__fuel_consumption
+    def __fuel_consume(self, fuel_consume):
+        self.__current_tank_capacity -= fuel_consume
 
     def __increase_fuel_consumption(self):
         if self.__mileage % Constants.MILEAGE_TILL_GET_OLDER == 0:
