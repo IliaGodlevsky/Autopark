@@ -25,7 +25,7 @@ class Car:
 
     def drive(self, distance):
         interval = 100
-        way = distance - distance % 100
+        way = distance - distance % interval
         self.__move(way, interval)
         way = distance
         interval = 1
